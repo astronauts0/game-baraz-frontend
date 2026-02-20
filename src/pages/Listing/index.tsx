@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { mockListings } from "../../data/mockData";
 
@@ -24,7 +24,6 @@ const ListingDetails: React.FC = () => {
     return mockListings.find((l) => l.id === Number(id));
   }, [id]);
 
-  const containerRef = useRef<HTMLDivElement>(null);
   const [galleryImages, setGalleryImages] = useState<string[]>([]);
 
   // Simulate gathering multiple images for the slider

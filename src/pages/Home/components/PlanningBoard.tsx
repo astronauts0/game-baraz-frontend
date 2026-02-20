@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { steps } from "../../../data/appData";
 import { useGSAP } from "@gsap/react";
-import { Badge } from "@/components/ui/badge";
 import ContainerDiv from "@/components/shared/ContainerDiv";
 import { SectionBadge } from "@/components/shared/SectionBadge";
 

@@ -1,13 +1,6 @@
 import React from "react";
 import FilterPill from "./FilterPill";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { SlidersHorizontal, Search } from "lucide-react";

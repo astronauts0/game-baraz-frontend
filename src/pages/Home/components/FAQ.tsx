@@ -1,5 +1,4 @@
 import ContainerDiv from "@/components/shared/ContainerDiv";
-import { Badge } from "@/components/ui/badge";
 import { faqs } from "@/data/appData";
 import React, { useState } from "react";
 import FAQItem from "@/components/shared/FAQItem";
