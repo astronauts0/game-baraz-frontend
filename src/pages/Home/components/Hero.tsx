@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
   return (
     <ContainerDiv
       ref={containerRef}
-      className="relative min-h-screen h-full flex items-center justify-center overflow-hidden w-full"
+      className="relative min-h-screen h-full flex items-center justify-center overflow-hidden w-full mt-20"
     >
       {/* Floating Background Images */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -104,7 +104,7 @@ const Hero: React.FC = () => {
           className="md:mb-6 mb-3"
         />
 
-        <div className="fade-in flex items-center justify-center gap-4">
+        <div className="fade-in flex flex-wrap items-center justify-center gap-4">
           <Link to="/signup">
             <Button size={"lg"}>
               <span>Get Stacked</span>
