@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import { mockListings } from "../data/mockData";
+import { mockListings } from "@/data/mockData";
 
 interface EscrowFormData {
   title: string;

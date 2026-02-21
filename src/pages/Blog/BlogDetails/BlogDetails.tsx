@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import { blogPosts } from "../data/mockData";
+import { blogPosts } from "@/data/mockData";
 
 const BlogDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

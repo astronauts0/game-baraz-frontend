@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import { mockListings } from "../data/mockData";
+import { mockListings } from "@/data/mockData";
 
 type TransactionStage = "CONTRACT" | "PAYMENT" | "VERIFYING" | "SECURED";
 

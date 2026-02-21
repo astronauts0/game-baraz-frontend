@@ -8,13 +8,13 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-export type DropdownOption = {
+export type SelectBoxOption = {
   label: string;
   value: string;
 };
 
 type Props = {
-  options: DropdownOption[];
+  options: SelectBoxOption[];
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
@@ -26,7 +26,7 @@ type Props = {
   itemClassName?: string;
 };
 
-const DropdownPrimary: React.FC<Props> = ({
+const SelectBoxPrimary: React.FC<Props> = ({
   options,
   value,
   defaultValue,
@@ -75,4 +75,4 @@ const DropdownPrimary: React.FC<Props> = ({
   );
 };
 
-export default DropdownPrimary;
+export default SelectBoxPrimary;

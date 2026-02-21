@@ -1,8 +1,9 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import { blogPosts } from "../data/mockData";
-import type { BlogPost } from "../types";
+import type { BlogPost } from "@/types";
+import { blogPosts } from "@/data/mockData";
+
 
 const Blog: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);

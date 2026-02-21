@@ -14,6 +14,7 @@ import ListingAssetManifest from "./components/ListingAssetManifest";
 import ListingAcquisitionCard from "./components/ListingAcquisitionCard";
 import ListingAgentProfile from "./components/ListingAgentProfile";
 import ListingReviews from "./components/ListingReviews";
+import { Separator } from "@/components/ui/separator";
 
 const ListingDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -83,28 +84,28 @@ const ListingDetails: React.FC = () => {
       {/* Top Navigation Bar / Breadcrumb */}
       <ListingBreadcrumb game={listing.game} id={listing.id} />
 
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Column: Visuals & Briefing */}
-          <div className="lg:col-span-8 space-y-8">
-            <ListingHero title={listing.title} galleryImages={galleryImages} />
-            <ListingIntelBriefing description={listing.description} />
-            <ListingAssetManifest />
-          </div>
+      <Separator className="mt-14 md:mt-3 mb-6" />
 
-          {/* Right Column: Acquisition & Agent */}
-          <div className="lg:col-span-4 space-y-6">
-            <ListingAcquisitionCard id={listing.id} price={listing.price} />
-            <ListingAgentProfile
-              seller={listing.seller}
-              sellerTier={listing.sellerTier}
-            />
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Left Column: Visuals & Briefing */}
+        <div className="lg:col-span-8 space-y-8">
+          <ListingHero title={listing.title} galleryImages={galleryImages} />
+          <ListingIntelBriefing description={listing.description} />
+          <ListingAssetManifest />
         </div>
 
-        {/* Advanced Seller Reviews Section (Now Full Width Below Grid) */}
-        <ListingReviews />
+        {/* Right Column: Acquisition & Agent */}
+        <div className="lg:col-span-4 space-y-6">
+          <ListingAcquisitionCard id={listing.id} price={listing.price} />
+          <ListingAgentProfile
+            seller={listing.seller}
+            sellerTier={listing.sellerTier}
+          />
+        </div>
       </div>
+
+      {/* Advanced Seller Reviews Section (Now Full Width Below Grid) */}
+      <ListingReviews />
     </ContainerDiv>
   );
 };

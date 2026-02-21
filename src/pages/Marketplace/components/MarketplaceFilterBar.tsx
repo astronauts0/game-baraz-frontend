@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { SlidersHorizontal, Search } from "lucide-react";
-import DropdownPrimary from "@/components/shared/DropdownPrimary";
+import SelectBoxPrimary from "@/components/shared/SelectBoxPrimary";
 import { sortOptions } from "@/constants";
 
 interface MarketplaceFilterBarProps {
@@ -96,7 +96,7 @@ const MarketplaceFilterBar: React.FC<MarketplaceFilterBarProps> = ({
           {/* Sort Dropdown */}
           <div className="relative group">
             {/* Sort Dropdown */}
-            <DropdownPrimary
+            <SelectBoxPrimary
               defaultValue="recommended"
               options={sortOptions}
               triggerClassName="rounded-full bg-white px-4 py-2 text-[11px] font-black uppercase tracking-wide border-black cursor-copy"

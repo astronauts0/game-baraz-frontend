@@ -3,13 +3,12 @@ import RootLayout from "@/layouts/RootLayout";
 import Home from "@/pages/Home";
 import Marketplace from "@/pages/Marketplace";
 import ListingDetails from "@/pages/Listing";
-import EscrowProcess from "@/components/EscrowProcess";
-import EscrowWizard from "@/components/EscrowWizard";
+import EscrowProcess from "@/pages/EscrowProcess/EscrowProcess";
+import EscrowWizard from "@/pages/EscrowWizard/EscrowWizard";
 import HowItWorks from "@/pages/HowItWorks";
 import AntiFraud from "@/pages/AntiFraud";
-import Blog from "@/components/Blog";
-import BlogDetails from "@/components/BlogDetails";
-import Gallery from "@/components/Gallery";
+import Blog from "@/pages/Blog/Blog";
+import Gallery from "@/pages/Gallery/Gallery";
 import Signup from "@/pages/Signup";
 import Login from "@/pages/Login";
 import ContactUs from "@/pages/ContactUs";
@@ -18,6 +17,7 @@ import ForgotPassword from "@/pages/ForgotPassword";
 import ResetPassword from "@/pages/ResetPassword";
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import Safehouse from "@/pages/SafeHouse";
+import BlogDetails from "@/pages/Blog/BlogDetails/BlogDetails";
 
 export const router = createBrowserRouter([
   {
