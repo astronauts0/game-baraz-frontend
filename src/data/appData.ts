@@ -485,3 +485,36 @@ export const initialReviews: Review[] = [
     images: [],
   },
 ];
+
+// Game Logo Mappings
+export const GAME_LOGOS: Record<string, string> = {
+  Valorant:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Valorant_logo_-_pink_color_version.svg/100px-Valorant_logo_-_pink_color_version.svg.png",
+  Fortnite:
+    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Fortnite_F_lettermark_logo.png",
+  "CS:GO": "https://upload.wikimedia.org/wikipedia/en/a/a2/CSGO_Logo.png",
+  "League of Legends":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/LoL_Icon.svg/100px-LoL_Icon.svg.png",
+  "Overwatch 2":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Overwatch_2_logo.svg/100px-Overwatch_2_logo.svg.png",
+  "Apex Legends":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Apex_legends_logo.svg/100px-Apex_legends_logo.svg.png",
+  Minecraft:
+    "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png",
+  Roblox:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Roblox_logo.svg/100px-Roblox_logo.svg.png",
+  "GTA V":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Grand_Theft_Auto_V_Logo.svg/100px-Grand_Theft_Auto_V_Logo.svg.png",
+};
+
+export const INITIAL_GAMES = [
+  "Valorant",
+  "Fortnite",
+  "CS:GO",
+  "League of Legends",
+  "Overwatch 2",
+  "Apex Legends",
+  "Minecraft",
+  "Roblox",
+  "GTA V",
+];

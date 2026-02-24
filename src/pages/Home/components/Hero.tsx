@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
   return (
     <ContainerDiv
       ref={containerRef}
-      className="relative min-h-screen h-full flex items-center justify-center overflow-hidden w-full mt-20"
+      className="relative min-h-screen h-full flex items-center justify-center overflow-hidden w-full mt-20 sm:mt-0"
     >
       {/* Floating Background Images */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

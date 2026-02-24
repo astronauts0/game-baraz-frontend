@@ -18,6 +18,9 @@ import ResetPassword from "@/pages/ResetPassword";
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import Safehouse from "@/pages/SafeHouse";
 import BlogDetails from "@/pages/Blog/BlogDetails/BlogDetails";
+import Dashboard from "@/pages/Dashboard";
+import CreateListing from "@/pages/Dashboard/CreateListing";
+import ListingsPage from "@/pages/Dashboard/Listings";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +98,24 @@ export const router = createBrowserRouter([
       {
         path: "terms-and-condition",
         element: <TermsConditions />,
+      },
+
+      {
+        path: "dashboard",
+        children: [
+          {
+            index: true,
+            element: <Dashboard />,
+          },
+          {
+            path: "sell",
+            element: <CreateListing />,
+          },
+          {
+            path: "listings",
+            element: <ListingsPage />,
+          },
+        ],
       },
       {
         path: "*",

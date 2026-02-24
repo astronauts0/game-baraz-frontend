@@ -1,11 +1,14 @@
 import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 import Navbar from "../components/global/Navbar";
+import DashboardNavbar from "../components/global/DashboardNavbar";
 import Footer from "../components/global/Footer";
 // import FloatingNotification from "../components/FloatingNotification";
 import { AppSidebar } from "@/components/global/AppSidebar";
 
 const RootLayout = () => {
   const location = useLocation();
+
+  const isDashboard = location.pathname.startsWith("/dashboard");
 
   // Determine if Navbar/Footer should be hidden based on path
   const hideNavbarPaths = [
@@ -35,7 +38,7 @@ const RootLayout = () => {
   return (
     <div className="relative flex min-h-screen w-full bg-page-bg">
       <main className="flex-1 min-h-screen text-slate-900 flex flex-col">
-        {showNavbar && <Navbar />}
+        {showNavbar && (isDashboard ? <DashboardNavbar /> : <Navbar />)}
         <div className="flex-1">
           <Outlet />
         </div>

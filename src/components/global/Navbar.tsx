@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          <Link to="/create-escrow" className="hidden sm:flex group">
+          <Link to="/dashboard" className="hidden sm:flex group">
             <Button>
               <span>Start Transaction</span>
               <AnimatedArrow
