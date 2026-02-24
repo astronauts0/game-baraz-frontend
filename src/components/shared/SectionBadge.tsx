@@ -31,7 +31,7 @@ const SectionBadge = React.forwardRef<HTMLDivElement, SectionBadgeProps>(
             )}
             aria-hidden="true"
           />
-          <span className="text-[11px] font-bold uppercase tracking-[0.2em]">
+          <span className="text-[11px] font-bold uppercase tracking-wider font-mono">
             {children}
           </span>
         </Badge>
