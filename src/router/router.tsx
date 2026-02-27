@@ -21,6 +21,8 @@ import BlogDetails from "@/pages/Blog/BlogDetails/BlogDetails";
 import Dashboard from "@/pages/Dashboard";
 import CreateListing from "@/pages/Dashboard/CreateListing";
 import ListingsPage from "@/pages/Dashboard/Listings";
+import OrdersPage from "@/pages/Dashboard/Orders";
+import OrderDetailsPage from "@/pages/Dashboard/Orders/Order";
 
 export const router = createBrowserRouter([
   {
@@ -109,11 +111,33 @@ export const router = createBrowserRouter([
           },
           {
             path: "sell",
-            element: <CreateListing />,
+            children: [
+              {
+                index: true,
+                element: <CreateListing />,
+              },
+              {
+                path: ":mode/:id",
+                element: <CreateListing />,
+              },
+            ],
           },
           {
             path: "listings",
             element: <ListingsPage />,
+          },
+          {
+            path: "orders",
+            children: [
+              {
+                index: true,
+                element: <OrdersPage />,
+              },
+              {
+                path: ":id",
+                element: <OrderDetailsPage />,
+              },
+            ],
           },
         ],
       },

@@ -1,7 +1,8 @@
 import React from "react";
-import { ShieldCheck, Star } from "lucide-react";
+import { AlertCircle, ShieldCheck, Star } from "lucide-react";
 import { getGameIcon } from "./utils";
 import { Card, CardContent } from "@/components/ui/card";
+import AlertPrimary from "@/components/shared/Alert/AlertPrimary";
 
 interface LivePreviewProps {
   title: string;
@@ -15,9 +16,8 @@ const LivePreview: React.FC<LivePreviewProps> = ({
   image,
 }) => {
   return (
-    <div className="sticky top-28">
-      <h3 className="font-bold uppercase mb-4">Live Preview</h3>
-
+    <div className="sticky top-28 space-y-4">
+      <h3 className="font-bold uppercase">Live Preview</h3>
       <Card className="p-0 overflow-hidden">
         <CardContent className="p-0">
           <div className="relative h-48 bg-slate-100">
@@ -76,6 +76,27 @@ const LivePreview: React.FC<LivePreviewProps> = ({
           </div>
         </CardContent>
       </Card>
+      <AlertPrimary
+        title="Operative Protection"
+        icon={<ShieldCheck className="text-blue-500" />}
+        className="border-blue-primary/50 bg-blue-50"
+      >
+        All transactions are held in escrow until asset delivery is confirmed...
+      </AlertPrimary>
+      <AlertPrimary
+        title="Seller Guidelines"
+        icon={<AlertCircle className="text-amber-500" />}
+        className="border-amber-300 bg-amber-50"
+        titleClassName="text-amber-800"
+      >
+        <div>
+          <ul className="text-xs text-amber-800 space-y-1 list-disc pl-3">
+            <li>Ensure screenshots are clear and recent.</li>
+            <li>Hide sensitive personal info.</li>
+            <li>Deliver assets within 24hrs of sale.</li>
+          </ul>
+        </div>
+      </AlertPrimary>
     </div>
   );
 };

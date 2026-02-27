@@ -10,17 +10,11 @@ import {
 import { SALES_DATA } from "@/constants";
 import { useState } from "react";
 
-interface DashboardSalesChartProps {
-  className?: string;
-}
-
-const DashboardSalesChart: React.FC<DashboardSalesChartProps> = ({
-  className,
-}) => {
+const DashboardSalesChart: React.FC = () => {
   const [timeframe, setTimeframe] = useState("month");
 
   return (
-    <Card className={className}>
+    <Card>
       <CardContent>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <div>

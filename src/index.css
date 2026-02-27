@@ -25,7 +25,10 @@
   /* Brand (your colors) */
   --primary: #6366f1;
   --primary-foreground: #ffffff;
-  --primary-blue: #3b82f6;
+  --blue-primary: #3b82f6;
+  --green-primary: #22c55e;
+  --orange-primary: #f97316;
+  --red-primary: oklch(0.577 0.245 27.325);
 
   --secondary: #000000;
   --secondary-foreground: #ffffff;
@@ -111,7 +114,12 @@
 @theme inline {
   /* Your custom theme tokens */
   --color-primary: var(--primary);
+  --color-blue-primary: var(--blue-primary);
   --color-secondary: var(--secondary);
+  --color-green-primary: var(--green-primary);
+  --color-orange-primary: var(--orange-primary);
+  --color-yellow-primary: var(--yellow-primary);
+  --color-red-primary: var(--red-primary);
   --color-page-bg: var(--background);
   --color-card-bg: var(--card);
   --color-border-light: var(--border);
@@ -255,7 +263,7 @@ body {
 }
 
 .text_gradient {
-  /* background: linear-gradient(to right, var(--primary-blue), var(--primary)); */
+  /* background: linear-gradient(to right, var(--blue-primary), var(--primary)); */
   background: var(--primary);
   -webkit-background-clip: text;
   background-clip: text;

@@ -16,8 +16,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="sticky top-3 left-0 w-full z-50 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="glass_box rounded-2xl px-4 sm:px-6 py-2 sm:py-3 flex items-center justify-between shadow-xl shadow-slate-200/50 border border-white/40 transition-all duration-300">
+    <nav className="sticky top-0 sm:top-3 left-0 w-full z-50 max-w-[1440px] mx-auto lg:px-8">
+      <div className="glass_box rounded-none! sm:rounded-2xl! px-4 sm:px-6 py-2 sm:py-3 flex items-center justify-between shadow-xl shadow-slate-200/50 border border-white/40 transition-all duration-300">
         <Logo />
 
         <div className="flex items-center gap-6">

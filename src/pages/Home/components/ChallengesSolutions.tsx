@@ -78,7 +78,7 @@ const ChallengesSolutions: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="sm:py-32 py-10 bg-white relative overflow-hidden">
-      <ContainerDiv className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <ContainerDiv>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-0 relative max-w-7xl mx-auto">
           {/* Center Divider (Desktop) */}
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 transform -translate-x-1/2 rounded-full"></div>

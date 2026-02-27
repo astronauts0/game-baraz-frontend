@@ -47,7 +47,7 @@ const SelectBoxPrimary: React.FC<Props> = ({
       >
         <SelectTrigger
           className={cn(
-            "rounded-full bg-white px-4 py-2 text-[11px] font-black uppercase tracking-wide border-black cursor-pointer",
+            "rounded-full bg-white px-4 text-[11px] font-black uppercase tracking-wide border-black cursor-pointer",
             triggerClassName,
           )}
         >
