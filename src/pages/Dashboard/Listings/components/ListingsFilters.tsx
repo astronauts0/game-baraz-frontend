@@ -1,4 +1,5 @@
 import React from "react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type StatusType = "All" | "Active" | "Draft" | "Sold";
 
@@ -14,23 +15,27 @@ export const ListingsFilters: React.FC<ListingsFiltersProps> = ({
   const tabs: StatusType[] = ["All", "Active", "Draft", "Sold"];
 
   return (
-    <div className="border-b border-slate-200 flex gap-8">
-      {tabs.map((tab) => (
-        <button
-          key={tab}
-          onClick={() => setStatusFilter(tab)}
-          className={`pb-4 text-sm font-bold tracking-wide transition-all relative ${
-            statusFilter === tab
-              ? "text-purple-600"
-              : "text-slate-500 hover:text-slate-700"
-          }`}
+    <div className="border-b border-border pb-0.5 mt-12">
+      <Tabs
+        value={statusFilter}
+        onValueChange={(value) => setStatusFilter(value as StatusType)}
+        className="w-full"
+      >
+        <TabsList
+          variant="line"
+          className="h-auto w-1/2 p-0 bg-transparent justify-start gap-8"
         >
-          {tab}
-          {statusFilter === tab && (
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-600 rounded-t-full"></span>
-          )}
-        </button>
-      ))}
+          {tabs.map((tab) => (
+            <TabsTrigger
+              key={tab}
+              value={tab}
+              className="px-0 pb-3 text-sm font-bold tracking-wide data-[state=active]:text-primary after:bg-primary rounded-none shadow-none"
+            >
+              {tab}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import GsapWrapper from "./utils/GsapWrapper.tsx";
 import App from "./App.tsx";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { SidebarProvider } from "./components/ui/sidebar";
+import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -13,6 +14,7 @@ createRoot(document.getElementById("root")!).render(
       <SidebarProvider defaultOpen={false}>
         <TooltipProvider>
           <App />
+          <Toaster />
         </TooltipProvider>
       </SidebarProvider>
     </GsapWrapper>

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { SlidersHorizontal, Search } from "lucide-react";
-import SelectBoxPrimary from "@/components/shared/SelectBoxPrimary";
+import SelectBoxPrimary from "@/components/shared/Form/SelectBoxPrimary";
 import { sortOptions } from "@/constants";
 
 interface MarketplaceFilterBarProps {
@@ -99,7 +99,7 @@ const MarketplaceFilterBar: React.FC<MarketplaceFilterBarProps> = ({
             <SelectBoxPrimary
               defaultValue="recommended"
               options={sortOptions}
-              triggerClassName="rounded-full bg-white px-4 py-2 text-[11px] font-black uppercase tracking-wide border-black cursor-copy"
+              triggerClassName="border-black cursor-copy h-9!"
               contentClassName="rounded-xl"
               itemClassName="cursor-copy"
             />

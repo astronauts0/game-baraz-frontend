@@ -2,13 +2,9 @@ import InventoryChart from "@/components/charts/PieChart";
 import { Card, CardContent } from "@/components/ui/card";
 import { INVENTORY_DATA } from "@/constants";
 
-interface DashboardPieChartProps {
-  className?: string;
-}
-
-const DashboardPieChart: React.FC<DashboardPieChartProps> = ({ className }) => {
+const DashboardPieChart: React.FC = () => {
   return (
-    <Card className={className}>
+    <Card>
       <CardContent>
         <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-6">
           Inventory Mix

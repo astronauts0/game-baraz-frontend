@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type DashboardListing } from "@/types";
 import GameCategorySelection from "./components/GameCategorySelection";
 import AssetInformation from "./components/AssetInformation";
 import PricingDetails from "./components/PricingDetails";
@@ -15,15 +14,21 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import AnimatedArrow from "@/components/shared/AnimatedArrow";
 
-interface CreateListingProps {
-  mode?: "create" | "edit" | "view";
-  initialData?: DashboardListing | null;
-}
+import { useParams } from "react-router-dom";
+import { INITIAL_LISTINGS } from "@/constants";
+import SectionTop from "@/components/global/SectionTop";
+import { SectionBadge } from "@/components/shared/SectionBadge";
 
-const CreateListing: React.FC<CreateListingProps> = ({
-  mode = "create",
-  initialData,
-}) => {
+const CreateListing: React.FC = () => {
+  const { mode: urlMode, id } = useParams<{
+    mode?: string;
+    id?: string;
+  }>();
+
+  const mode = (urlMode as "create" | "edit" | "view") || "create";
+  const initialData = id
+    ? INITIAL_LISTINGS.find((l) => l.id === id) || null
+    : null;
   const isViewMode = mode === "view";
   const isEditMode = mode === "edit";
 
@@ -108,21 +113,14 @@ const CreateListing: React.FC<CreateListingProps> = ({
     <ContainerDiv className="py-10 md:py-20 space-y-8">
       {/* <BackgroundFx from="from-emerald-500/10" /> */}
       {/* Page Title */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
-            {getPageTitle(isViewMode, isEditMode)}
-          </h1>
-          <p className="text-slate-500 mt-1">
-            {getPageSubtitle(isViewMode, isEditMode)}
-          </p>
-        </div>
-        {isViewMode && (
-          <div className="px-3 py-1 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold uppercase tracking-wider border border-slate-200">
-            Read Only Mode
-          </div>
-        )}
-      </div>
+      <SectionTop
+        title={getPageTitle(isViewMode, isEditMode)}
+        description={getPageSubtitle(isViewMode, isEditMode)}
+      >
+        {isViewMode && <SectionBadge>View Mode</SectionBadge>}
+        {isEditMode && <SectionBadge>Edit Mode</SectionBadge>}
+        {mode === "create" && <SectionBadge>Create Mode</SectionBadge>}
+      </SectionTop>
 
       <Form {...form}>
         <form

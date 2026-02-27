@@ -2,28 +2,19 @@ import React from "react";
 import { Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-interface EmptyListingsStateProps {
-  onCreateNew: () => void;
-}
-
-export const EmptyListingsState: React.FC<EmptyListingsStateProps> = ({
-  onCreateNew,
-}) => {
+export const EmptyListingsState: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center py-16 bg-white rounded-2xl border border-dashed border-slate-200">
-      <div className="p-4 bg-slate-50 rounded-full mb-4">
-        <Filter size={32} className="text-slate-300" />
+    <div className="flex flex-col items-center justify-center py-16 bg-white rounded-2xl border border-dashed border-slate-200 gap-2">
+      <div className="p-4 bg-primary/20 rounded-full">
+        <Filter size={32} className="text-primary" />
       </div>
-      <p className="text-slate-900 font-bold">No listings found</p>
-      <p className="text-slate-500 text-sm mt-1">
-        Try adjusting your filters or create a new listing.
-      </p>
-      <Button
-        onClick={onCreateNew}
-        className="mt-6 px-6 h-10 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition-colors"
-      >
-        Create Listing
-      </Button>
+      <div className="flex flex-col items-center gap-1">
+        <p className="font-bold">No listings found</p>
+        <p className="text-slate-500 text-sm">
+          Try adjusting your filters or create a new listing.
+        </p>
+      </div>
+      <Button >Create Listing</Button>
     </div>
   );
 };
