@@ -1,7 +1,7 @@
 import React from "react";
 import { TrendingUp, Box, Star, Activity } from "lucide-react";
 import { RECENT_OPERATIONS } from "@/constants";
-import StatCard from "./components/StatCard";
+import StatCard from "../../components/shared/StatCard";
 import RecentOperations from "./components/recent-operations";
 import ContainerDiv from "@/components/shared/ContainerDiv";
 import BackgroundFx from "@/components/shared/BackgroundFx";
@@ -10,21 +10,23 @@ import { DownToUpCurveSvg } from "@/components/Svgs";
 import { Badge } from "@/components/ui/badge";
 import DashboardSalesChart from "./components/DashboardSalesChart";
 import DashboardPieChart from "./components/DashboardPieChart";
+import QuickActions from "./components/QuickActions";
+import SectionTop from "@/components/global/SectionTop";
 
 const Dashboard: React.FC = () => {
   return (
     <ContainerDiv className="py-10 md:py-20 space-y-8">
       <BackgroundFx from="from-primary/25" />
       {/* Page Title & Status */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-wrap uppercase">
-          Operative Dashboard: Agent Phoenix
-        </h1>
+      <SectionTop
+        title="Operative Dashboard"
+        description="Track and manage your asset transactions."
+      >
         <SectionBadge className="w-fit">System Online</SectionBadge>
-      </div>
+      </SectionTop>
 
       {/* Top Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <StatCard
           label="Total Earnings"
           value="Rs 4,285,900"
@@ -68,19 +70,19 @@ const Dashboard: React.FC = () => {
         />
       </div>
 
-      {/* Main Content Layout */}
-      <div className="grid grid-cols-12 gap-8">
-        <div className="col-span-12 xl:col-span-8">
+      {/* Main Content Layout - Grid on PC */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Left Column - Main Info (2/3 width on PC) */}
+        <div className="lg:col-span-2 space-y-8">
           <DashboardSalesChart />
+          <RecentOperations data={RECENT_OPERATIONS} />
         </div>
-        <div className="col-span-12 xl:col-span-4">
-          <DashboardPieChart />
-        </div>
-      </div>
 
-      {/* Right Column (Sidebar) */}
-      <div className="space-y-8">
-        <RecentOperations data={RECENT_OPERATIONS} />
+        {/* Right Column - Secondary Info (1/3 width on PC) */}
+        <div className="space-y-8">
+          <DashboardPieChart />
+          <QuickActions />
+        </div>
       </div>
     </ContainerDiv>
   );

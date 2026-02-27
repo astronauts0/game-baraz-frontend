@@ -1,5 +1,5 @@
 import React from "react";
-import SelectBoxPrimary from "@/components/shared/SelectBoxPrimary";
+import SelectBoxPrimary from "@/components/shared/Form/SelectBoxPrimary";
 
 interface ReviewFiltersProps {
   activeFilter: "all" | "photos" | "verified";
@@ -55,7 +55,6 @@ const ReviewFilters: React.FC<ReviewFiltersProps> = ({
             setSortOption(value as "recent" | "highest" | "lowest")
           }
           options={sortOptions}
-          
         />
       </div>
     </div>
