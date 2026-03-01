@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { type Order } from "@/types";
 import { INITIAL_ORDERS } from "@/constants";
 import ContainerDiv from "@/components/shared/ContainerDiv";
@@ -68,7 +69,11 @@ interface OrdersPageProps {
   onChatClick?: (order: Order) => void;
 }
 
-const OrdersPage = ({ onInitiateDispute, onChatClick }: OrdersPageProps) => {
+const OrdersPage = ({
+  onInitiateDispute: propOnInitiateDispute,
+  onChatClick: propOnChatClick,
+}: OrdersPageProps) => {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState<Order[]>(INITIAL_ORDERS);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -129,7 +134,7 @@ const OrdersPage = ({ onInitiateDispute, onChatClick }: OrdersPageProps) => {
           value={searchQuery}
           onChange={setSearchQuery}
           placeholder="Search orders by ID, asset, or game"
-          className="w-fit lg:w-80"
+          className="w-full lg:w-80"
         />
 
         <SelectBoxPrimary
@@ -166,8 +171,17 @@ const OrdersPage = ({ onInitiateDispute, onChatClick }: OrdersPageProps) => {
                 <OrderCard
                   key={order.id}
                   order={order}
-                  onChat={onChatClick}
-                  onInitiateDispute={onInitiateDispute}
+                  onChat={
+                    propOnChatClick ||
+                    ((o) => navigate(`/dashboard/orders/${o.id}/chat`))
+                  }
+                  onInitiateDispute={
+                    propOnInitiateDispute ||
+                    ((o) =>
+                      navigate("/dashboard/dispute/create", {
+                        state: { order: o },
+                      }))
+                  }
                 />
               ))}
             </InfiniteScrollPrimary>

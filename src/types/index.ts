@@ -197,3 +197,50 @@ export interface DataTableProps<TData> {
 }
 
 export type { ColumnDef };
+
+export type MessageSender = "me" | "other" | "system";
+export type MessageType = "text" | "image" | "file";
+
+export interface ChatMessage {
+  id: string;
+  sender: MessageSender;
+  text: string;
+  timestamp: string;
+  type?: MessageType;
+  fileUrl?: string;
+  fileName?: string;
+  read?: boolean;
+}
+
+export interface Transaction {
+  id: string;
+  type: "Withdrawal" | "Deposit" | "Revenue" | "Purchase";
+  label: string;
+  date: string;
+  amount: number;
+  status: "Completed" | "Processing" | "Pending";
+}
+
+export interface PaymentMethod {
+  id: string;
+  type: "Visa" | "Mastercard" | "PayPal";
+  label: string;
+  subLabel: string;
+  isDefault: boolean;
+  identifier: string;
+  expiry?: string;
+}
+
+export interface BudgetScenario {
+  id: string;
+  name: string;
+  costPrice: number;
+  listingPrice: number;
+  platformFee: number;
+  miscCosts: number;
+  netProfit: number;
+  margin: number;
+  date: string;
+}
+
+export type TabType = "analytics" | "breakdown" | "history";

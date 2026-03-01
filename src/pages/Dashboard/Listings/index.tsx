@@ -81,7 +81,7 @@ const ListingsPage: React.FC = () => {
           value={searchQuery}
           onChange={setSearchQuery}
           placeholder="Search listings..."
-          className="w-fit lg:w-80"
+          className="w-full lg:w-80"
         />
 
         <Button onClick={() => onNavigateToSell("create")} size={"lg"}>

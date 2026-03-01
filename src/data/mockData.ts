@@ -1,4 +1,4 @@
-import type { Listing, BlogPost } from "../types";
+import type { Listing, BlogPost, Transaction, PaymentMethod } from "../types";
 
 export const mockListings: Listing[] = [
   {
@@ -199,5 +199,159 @@ export const blogPosts: BlogPost[] = [
     image:
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1000",
     author: "Security Ops",
+  },
+];
+
+export const INITIAL_TRANSACTIONS: Transaction[] = [
+  {
+    id: "TX-9982-W",
+    type: "Withdrawal",
+    label: "Transfer to PayPal",
+    date: "Oct 24, 2023",
+    amount: -25000,
+    status: "Completed",
+  },
+  {
+    id: "TX-9981-D",
+    type: "Deposit",
+    label: "Top-up via Visa **4242",
+    date: "Oct 22, 2023",
+    amount: 5000,
+    status: "Completed",
+  },
+  {
+    id: "TX-9980-S",
+    type: "Revenue",
+    label: "Sale #AF-9981 (Valorant)",
+    date: "Oct 20, 2023",
+    amount: 12500,
+    status: "Completed",
+  },
+  {
+    id: "TX-9979-P",
+    type: "Purchase",
+    label: "Order #ORD-3321 (VP Code)",
+    date: "Oct 18, 2023",
+    amount: -3400,
+    status: "Completed",
+  },
+  {
+    id: "TX-9978-W",
+    type: "Withdrawal",
+    label: "Transfer to Bank Account",
+    date: "Oct 15, 2023",
+    amount: -10000,
+    status: "Processing",
+  },
+];
+
+export const INITIAL_METHODS: PaymentMethod[] = [
+  {
+    id: "PM-1",
+    type: "Visa",
+    label: "Visa ending in 4242",
+    subLabel: "Expires 12/25",
+    isDefault: true,
+    identifier: "4242 4242 4242 4242",
+    expiry: "12/25",
+  },
+  {
+    id: "PM-2",
+    type: "PayPal",
+    label: "PayPal Account",
+    subLabel: "agent***@email.com",
+    isDefault: false,
+    identifier: "agent.phoenix@email.com",
+  },
+];
+
+export const mockDisputes: any[] = [
+  {
+    id: "DSP-1092",
+    orderId: "ORD-7782-XJ",
+    reason: "Account credentials incorrect",
+    status: "Open",
+    dateOpened: "Oct 25, 2023",
+    description: "The login details provided by the seller are not working.",
+    priority: "High",
+    messages: [
+      {
+        id: "m1",
+        sender: "System",
+        text: "Dispute automatically opened based on user report.",
+        timestamp: "Oct 25, 2023 • 10:00 AM",
+      },
+      {
+        id: "m2",
+        sender: "User",
+        text: "Hi, I just bought this account but the password seems to be changed.",
+        timestamp: "Oct 25, 2023 • 10:05 AM",
+      },
+      {
+        id: "m3",
+        sender: "Admin",
+        text: "We are reaching out to the seller. We have temporarily frozen the funds.",
+        timestamp: "Oct 25, 2023 • 10:15 AM",
+      },
+    ],
+  },
+  {
+    id: "DSP-1085",
+    orderId: "ORD-9921-MC",
+    reason: "Item not as described",
+    status: "Under Review",
+    dateOpened: "Oct 23, 2023",
+    description: "Missing 2 skins that were promised in the listing images.",
+    priority: "Medium",
+    messages: [
+      {
+        id: "m1",
+        sender: "User",
+        text: "The Galaxy skin is there but the pickaxe is missing.",
+        timestamp: "Oct 23, 2023 • 08:00 PM",
+      },
+      {
+        id: "m2",
+        sender: "User",
+        text: "Here is proof of the inventory.",
+        timestamp: "Oct 23, 2023 • 08:02 PM",
+        isEvidence: true,
+      },
+      {
+        id: "m3",
+        sender: "Admin",
+        text: "Thank you for the evidence. We are reviewing the original listing.",
+        timestamp: "Oct 23, 2023 • 09:00 PM",
+      },
+    ],
+  },
+  {
+    id: "DSP-1050",
+    orderId: "ORD-1102-DL",
+    reason: "Delayed delivery",
+    status: "Resolved",
+    dateOpened: "Oct 15, 2023",
+    description: "Seller did not transfer the item within the 24h window.",
+    priority: "Low",
+    messages: [
+      {
+        id: "m1",
+        sender: "User",
+        text: "Still waiting for trade offer.",
+        timestamp: "Oct 15, 2023 • 09:00 AM",
+      },
+      {
+        id: "m2",
+        sender: "System",
+        text: "Seller has been notified of the delay.",
+        timestamp: "Oct 15, 2023 • 10:00 AM",
+      },
+      {
+        id: "m3",
+        sender: "Admin",
+        text: "Trade has now been completed. Closing dispute.",
+        timestamp: "Oct 16, 2023 • 11:30 AM",
+      },
+    ],
   },
 ];
