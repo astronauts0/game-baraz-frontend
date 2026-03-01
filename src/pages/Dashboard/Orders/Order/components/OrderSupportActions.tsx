@@ -21,7 +21,7 @@ export const OrderSupportActions: React.FC<OrderSupportActionsProps> = ({
         <div className="space-y-2">
           <button
             onClick={() => onReport(order)}
-            className="w-full text-left p-3 rounded-xl bg-red-50 text-red-600 text-sm font-bold flex items-center gap-3 border"
+            className="w-full text-left p-3 rounded-xl bg-red-50 text-red-600 text-sm font-bold flex items-center gap-3 border cursor-pointer hover:bg-red-100"
           >
             <div className="p-1.5 bg-red-100/50 rounded-lg">
               <AlertTriangle size={16} />
