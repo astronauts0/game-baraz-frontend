@@ -53,15 +53,26 @@ const OrderDetailsPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Content Area */}
         <div className="lg:col-span-2 space-y-8">
-          <OrderAssetCard order={order} onChat={() => {}} />
+          <OrderAssetCard
+            order={order}
+            onChat={() => navigate(`/dashboard/orders/${order.id}/chat`)}
+          />
           <OrderTransactionTimeline order={order} />
         </div>
 
         {/* Sidebar Info */}
         <div className="space-y-6">
-          <OrderCounterpartyCard order={order} onChat={() => {}} />
+          <OrderCounterpartyCard
+            order={order}
+            onChat={() => navigate(`/dashboard/orders/${order.id}/chat`)}
+          />
           <OrderPaymentSummary order={order} />
-          <OrderSupportActions order={order} onReport={() => {}} />
+          <OrderSupportActions
+            order={order}
+            onReport={(o) =>
+              navigate("/dashboard/dispute/create", { state: { order: o } })
+            }
+          />
         </div>
       </div>
     </ContainerDiv>

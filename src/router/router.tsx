@@ -23,6 +23,13 @@ import CreateListing from "@/pages/Dashboard/CreateListing";
 import ListingsPage from "@/pages/Dashboard/Listings";
 import OrdersPage from "@/pages/Dashboard/Orders";
 import OrderDetailsPage from "@/pages/Dashboard/Orders/Order";
+import ChatPage from "@/pages/Dashboard/Chat";
+import WalletPage from "@/pages/Dashboard/Wallet";
+import SellerToolsPage from "@/pages/Dashboard/SellerTool";
+import CreateDispute from "@/pages/Dashboard/Disputes/CreateDispute";
+import DisputesPage from "@/pages/Dashboard/Disputes";
+import HelpCenterPage from "@/pages/Dashboard/Help";
+import ProfilePage from "@/pages/Dashboard/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -137,7 +144,35 @@ export const router = createBrowserRouter([
                 path: ":id",
                 element: <OrderDetailsPage />,
               },
+              {
+                path: ":id/chat",
+                element: <ChatPage />,
+              },
             ],
+          },
+          {
+            path: "wallet",
+            element: <WalletPage />,
+          },
+          {
+            path: "dispute/create",
+            element: <CreateDispute />,
+          },
+          {
+            path: "disputes",
+            element: <DisputesPage />,
+          },
+          {
+            path: "tools",
+            element: <SellerToolsPage />,
+          },
+          {
+            path: "help",
+            element: <HelpCenterPage />,
+          },
+          {
+            path: "profile",
+            element: <ProfilePage />,
           },
         ],
       },
