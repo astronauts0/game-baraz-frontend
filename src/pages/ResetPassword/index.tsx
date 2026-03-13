@@ -6,6 +6,7 @@ import ContainerDiv from "@/components/shared/ContainerDiv";
 import Logo from "@/components/global/Logo";
 import { ResetPasswordLeftPanel } from "./components/ResetPasswordLeftPanel";
 import { ResetPasswordForm } from "./components/ResetPasswordForm";
+import { type ResetPasswordFormValues } from "@/validations";
 
 const ResetPassword: React.FC = () => {
   const navigate = useNavigate();
@@ -28,10 +29,9 @@ const ResetPassword: React.FC = () => {
     );
   }, []);
 
-  const handleReset = (e: any) => {
-    e.preventDefault();
-    // Simulate recovery link sent
-    // For now, just navigate to login as a placeholder
+  const handleReset = (values: ResetPasswordFormValues) => {
+    console.log("Reset values:", values);
+    // Simulate password reset
     navigate("/login");
   };
 

@@ -8,7 +8,7 @@ api.interceptors.request.use(
     if (config.headers.Authorization) {
       return config;
     }
-    const token = localStorage.getItem("token"); // ya Redux se
+    const token = localStorage.getItem("accessToken"); // ya Redux se
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -28,7 +28,7 @@ api.interceptors.response.use(
         .includes("invalid access to resource")
     ) {
       const requestUrl = error.config.url || "";
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
 
       // More robust check: if URL contains "login" (case insensitive), assume it's a login request
       const isLoginRequest = requestUrl.toLowerCase().includes("login");
@@ -43,7 +43,7 @@ api.interceptors.response.use(
       // If we don't have a token, it's likely the initial load before auto-login, so don't reload yet.
       if (!isLoginRequest && token) {
         console.log("Token invalid, clearing and reloading...");
-        localStorage.removeItem("token");
+        localStorage.removeItem("accessToken");
       }
     }
     return Promise.reject(error);

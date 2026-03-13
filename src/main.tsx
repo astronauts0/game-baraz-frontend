@@ -7,16 +7,22 @@ import App from "./App.tsx";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { SidebarProvider } from "./components/ui/sidebar";
 import { Toaster } from "react-hot-toast";
+import { QueryProvider } from "./providers/QueryProvider.tsx";
+import { AuthProvider } from "./context/AuthContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <GsapWrapper>
-      <SidebarProvider defaultOpen={false}>
-        <TooltipProvider>
-          <App />
-          <Toaster />
-        </TooltipProvider>
-      </SidebarProvider>
-    </GsapWrapper>
+    <QueryProvider>
+      <AuthProvider>
+        <GsapWrapper>
+          <SidebarProvider defaultOpen={false}>
+            <TooltipProvider>
+              <App />
+              <Toaster />
+            </TooltipProvider>
+          </SidebarProvider>
+        </GsapWrapper>
+      </AuthProvider>
+    </QueryProvider>
   </StrictMode>,
 );

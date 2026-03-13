@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
 import RootLayout from "@/layouts/RootLayout";
 import Home from "@/pages/Home";
 import Marketplace from "@/pages/Marketplace";
@@ -30,6 +30,9 @@ import CreateDispute from "@/pages/Dashboard/Disputes/CreateDispute";
 import DisputesPage from "@/pages/Dashboard/Disputes";
 import HelpCenterPage from "@/pages/Dashboard/Help";
 import ProfilePage from "@/pages/Dashboard/Profile";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import PublicRoute from "@/components/auth/PublicRoute";
+
 
 export const router = createBrowserRouter([
   {
@@ -82,19 +85,35 @@ export const router = createBrowserRouter([
       },
       {
         path: "signup",
-        element: <Signup />,
+        element: (
+          <PublicRoute>
+            <Signup />
+          </PublicRoute>
+        ),
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        ),
       },
       {
         path: "forgot-password",
-        element: <ForgotPassword />,
+        element: (
+          <PublicRoute>
+            <ForgotPassword />
+          </PublicRoute>
+        ),
       },
       {
         path: "reset-password",
-        element: <ResetPassword />,
+        element: (
+          <PublicRoute>
+            <ResetPassword />
+          </PublicRoute>
+        ),
       },
       {
         path: "contact",
@@ -111,6 +130,11 @@ export const router = createBrowserRouter([
 
       {
         path: "dashboard",
+        element: (
+          <ProtectedRoute>
+            <Outlet />
+          </ProtectedRoute>
+        ),
         children: [
           {
             index: true,

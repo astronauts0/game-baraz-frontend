@@ -21,18 +21,26 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { contactFormSchema } from "@/validations";
 import RotateBox from "@/components/shared/RotateBox";
 import AnimatedArrow from "@/components/shared/AnimatedArrow";
+import SelectPrimary from "@/components/shared/Form/SelectPrimary";
+
+const subjectOptions = [
+  { value: "General Support", label: "General Support" },
+  {
+    value: "Transaction Dispute (Escrow)",
+    label: "Transaction Dispute (Escrow)",
+  },
+  {
+    value: "Report Fraud / Suspicious Activity",
+    label: "Report Fraud / Suspicious Activity",
+  },
+  { value: "Partnership Proposal", label: "Partnership Proposal" },
+  { value: "Legal / Compliance", label: "Legal / Compliance" },
+];
 
 const ContactForm: React.FC = () => {
   const form = useForm<z.infer<typeof contactFormSchema>>({
@@ -91,17 +99,17 @@ const ContactForm: React.FC = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-xs font-bold uppercase tracking-widest pl-1">
+                    <FormLabel className="text-xs font-bold uppercase tracking-widest pl-1 text-black/70">
                       Identification / Name
                     </FormLabel>
                     <FormControl>
                       <div className="relative group">
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors pointer-events-none z-10">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2">
                           <User size={16} />
                         </div>
                         <Input
                           placeholder="John Wick"
-                          className="bg-[#F8FAFC] border-slate-200 rounded-xl pl-11 py-3 h-auto text-sm font-bold focus-visible:ring-primary/10 focus-visible:border-primary placeholder:text-slate-400 shadow-none hover:bg-white hover:border-primary/30 transition-all duration-300"
+                          className="pl-10"
                           {...field}
                         />
                       </div>
@@ -115,18 +123,18 @@ const ContactForm: React.FC = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-xs font-bold uppercase tracking-widest pl-1">
+                    <FormLabel className="text-xs font-bold uppercase tracking-widest pl-1 text-black/70">
                       Email Address
                     </FormLabel>
                     <FormControl>
                       <div className="relative group">
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors pointer-events-none z-10">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2">
                           <Mail size={16} />
                         </div>
                         <Input
                           type="email"
                           placeholder="john@example.com"
-                          className="bg-[#F8FAFC] border-slate-200 rounded-xl pl-11 py-3 h-auto text-sm font-bold focus-visible:ring-primary/10 focus-visible:border-primary placeholder:text-slate-400 shadow-none hover:bg-white hover:border-primary/30 transition-all duration-300"
+                          className="pl-10"
                           {...field}
                         />
                       </div>
@@ -145,53 +153,20 @@ const ContactForm: React.FC = () => {
                   <FormLabel className="text-xs font-bold uppercase tracking-widest pl-1">
                     Inquiry Vector
                   </FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <div className="relative group">
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors pointer-events-none z-10">
-                          <ClipboardList size={16} />
-                        </div>
-                        <SelectTrigger className="bg-[#F8FAFC] border-slate-200 rounded-xl pl-11 h-auto text-sm font-bold focus:ring-primary/10 focus:border-primary transition-all w-full shadow-none hover:bg-white hover:border-primary/30 py-6">
-                          <SelectValue placeholder="Select a subject" />
-                        </SelectTrigger>
+                  <FormControl>
+                    <div className="relative group">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2">
+                        <ClipboardList size={16} />
                       </div>
-                    </FormControl>
-                    <SelectContent className="rounded-xl border-slate-200 shadow-xl">
-                      <SelectItem
-                        value="General Support"
-                        className="py-2.5 font-bold text-sm"
-                      >
-                        General Support
-                      </SelectItem>
-                      <SelectItem
-                        value="Transaction Dispute (Escrow)"
-                        className="py-2.5 font-bold text-sm"
-                      >
-                        Transaction Dispute (Escrow)
-                      </SelectItem>
-                      <SelectItem
-                        value="Report Fraud / Suspicious Activity"
-                        className="py-2.5 font-bold text-sm"
-                      >
-                        Report Fraud / Suspicious Activity
-                      </SelectItem>
-                      <SelectItem
-                        value="Partnership Proposal"
-                        className="py-2.5 font-bold text-sm"
-                      >
-                        Partnership Proposal
-                      </SelectItem>
-                      <SelectItem
-                        value="Legal / Compliance"
-                        className="py-2.5 font-bold text-sm"
-                      >
-                        Legal / Compliance
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+                      <SelectPrimary
+                        value={field.value}
+                        onChange={field.onChange}
+                        options={subjectOptions}
+                        placeholder="Select a subject"
+                        SelectTriggerClass="pl-10"
+                      />
+                    </div>
+                  </FormControl>
                   <FormMessage className="font-bold text-[10px]" />
                 </FormItem>
               )}
@@ -207,12 +182,12 @@ const ContactForm: React.FC = () => {
                   </FormLabel>
                   <FormControl>
                     <div className="relative group">
-                      <div className="absolute left-4 top-5 text-slate-400 group-focus-within:text-primary transition-colors pointer-events-none z-10">
+                      <div className="absolute left-4 top-4">
                         <MessageSquare size={16} />
                       </div>
                       <Textarea
+                        className="pl-10"
                         placeholder="Describe your situation in detail..."
-                        className="min-h-[140px] bg-[#F8FAFC] border-slate-200 rounded-xl pl-11 py-3 text-sm font-bold focus-visible:ring-primary/10 focus-visible:border-primary placeholder:text-slate-400 shadow-none hover:bg-white hover:border-primary/30 transition-all duration-300 resize-none"
                         {...field}
                       />
                     </div>

@@ -31,6 +31,8 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useAuth } from "@/context/AuthContext";
+
 
 const items = [
   {
@@ -119,6 +121,8 @@ const dashboardItems = [
 export function AppSidebar() {
   const location = useLocation();
   const { setOpenMobile } = useSidebar();
+  const { user, logout, isAuthenticated } = useAuth();
+
 
   return (
     <Sidebar side="left" collapsible="offcanvas" className="z-[100]">
@@ -145,80 +149,81 @@ export function AppSidebar() {
       <SidebarContent className="px-4 py-8">
         {/* User Profile - Mobile Only */}
         <div className="lg:hidden mb-6 p-4 rounded-2xl bg-slate-50 border border-slate-100">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="relative">
-              <Avatar className="h-12 w-12 border-2 border-white shadow-sm">
-                <AvatarImage src="https://picsum.photos/100/100" />
-                <AvatarFallback className="bg-primary/10 text-primary font-bold text-xs">
-                  AP
-                </AvatarFallback>
-              </Avatar>
-              <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white"></div>
-            </div>
-            <div className="flex flex-col">
-              <p className="text-sm font-bold text-slate-900 leading-tight">
-                Agent Phoenix
-              </p>
-              <p className="text-[10px] text-slate-500 font-medium tracking-tight">
-                Level 5 Operative
-              </p>
-            </div>
-          </div>
+          {isAuthenticated ? (
+            <>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="relative">
+                  <Avatar className="h-12 w-12 border-2 border-white shadow-sm">
+                    <AvatarImage src="" />
+                    <AvatarFallback className="bg-primary/10 text-primary font-bold text-xs">
+                      {user?.name?.slice(0, 2).toUpperCase() || "OP"}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white"></div>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-sm font-bold text-slate-900 leading-tight">
+                    {user?.name || "Operative"}
+                  </p>
+                  <p className="text-[10px] text-slate-500 font-medium tracking-tight">
+                    {user?.role || "Operative"}
+                  </p>
+                </div>
+              </div>
 
-          <div className="grid grid-cols-2 gap-2 mb-4">
-            <div className="text-center p-2 rounded-xl bg-white border border-slate-100 shadow-sm">
-              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tighter">
-                Balance
-              </p>
-              <p className="text-xs font-bold text-slate-900">Rs 48,250</p>
-            </div>
-            <div className="text-center p-2 rounded-xl bg-white border border-slate-100 shadow-sm">
-              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tighter">
-                Rating
-              </p>
-              <p className="text-xs font-bold text-slate-900">4.9/5.0</p>
-            </div>
-          </div>
+              <div className="grid grid-cols-2 gap-2 mb-4">
+                <div className="text-center p-2 rounded-xl bg-white border border-slate-100 shadow-sm">
+                  <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tighter">
+                    Balance
+                  </p>
+                  <p className="text-xs font-bold text-slate-900">Rs 48,250</p>
+                </div>
+                <div className="text-center p-2 rounded-xl bg-white border border-slate-100 shadow-sm">
+                  <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tighter">
+                    Rating
+                  </p>
+                  <p className="text-xs font-bold text-slate-900">4.9/5.0</p>
+                </div>
+              </div>
 
-          <div className="space-y-1">
-            <Link
-              to="/profile"
-              onClick={() => setOpenMobile(false)}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white transition-colors text-slate-600"
-            >
-              <User size={16} className="text-slate-400" />
-              <span className="text-sm font-medium">My Profile</span>
-            </Link>
-            <Link
-              to="/dashboard/wallet"
-              onClick={() => setOpenMobile(false)}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white transition-colors text-slate-600"
-            >
-              <WalletIcon size={16} className="text-slate-400" />
-              <span className="text-sm font-medium">Wallet</span>
-            </Link>
-            <Link
-              to="/settings"
-              onClick={() => setOpenMobile(false)}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white transition-colors text-slate-600"
-            >
-              <Shield size={16} className="text-slate-400" />
-              <span className="text-sm font-medium">Security</span>
-            </Link>
-            <Link
-              to="/help"
-              onClick={() => setOpenMobile(false)}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white transition-colors text-slate-600"
-            >
-              <HelpCircle size={16} className="text-slate-400" />
-              <span className="text-sm font-medium">Help Center</span>
-            </Link>
-            <div className="h-px bg-slate-100 my-2 mx-1" />
-            <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors text-red-600">
-              <LogOut size={16} className="text-red-400" />
-              <span className="text-sm font-bold">Logout</span>
-            </button>
-          </div>
+              <div className="space-y-1">
+                <Link
+                  to="/dashboard/profile"
+                  onClick={() => setOpenMobile(false)}
+                  className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white transition-colors text-slate-600"
+                >
+                  <User size={16} className="text-slate-400" />
+                  <span className="text-sm font-medium">My Profile</span>
+                </Link>
+                <div className="h-px bg-slate-100 my-2 mx-1" />
+                <button
+                  onClick={() => {
+                    logout();
+                    setOpenMobile(false);
+                  }}
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors text-red-600"
+                >
+                  <LogOut size={16} className="text-red-400" />
+                  <span className="text-sm font-bold">Logout</span>
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-col gap-2">
+              <Link to="/login" onClick={() => setOpenMobile(false)}>
+                <Button variant="outline" className="w-full justify-start gap-3">
+                  <User size={16} />
+                  Login
+                </Button>
+              </Link>
+              <Link to="/signup" onClick={() => setOpenMobile(false)}>
+                <Button className="w-full justify-start gap-3">
+                  <PlusCircle size={16} />
+                  Create Account
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
 
         <SidebarMenu className="gap-2">

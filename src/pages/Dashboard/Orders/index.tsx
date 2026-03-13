@@ -6,7 +6,7 @@ import ContainerDiv from "@/components/shared/ContainerDiv";
 
 import SearchPrimary from "@/components/shared/Form/SearchPrimary";
 import SectionTop from "@/components/global/SectionTop";
-import SelectBoxPrimary from "@/components/shared/Form/SelectBoxPrimary";
+import SelectPrimary from "@/components/shared/Form/SelectPrimary";
 import InfiniteScrollPrimary from "@/components/shared/InfiniteScrollPrimary";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -137,7 +137,7 @@ const OrdersPage = ({
           className="w-full lg:w-80"
         />
 
-        <SelectBoxPrimary
+        <SelectPrimary
           options={[
             { label: "All Orders", value: "All" },
             { label: "Buy Orders", value: "Buy" },
@@ -146,7 +146,7 @@ const OrdersPage = ({
           value={typeFilter}
           onChange={(val) => setTypeFilter(val as TypeFilter)}
           placeholder="Filter by type"
-          triggerClassName="h-9!"
+          SelectTriggerClass="h-9!"
         />
       </SectionTop>
 

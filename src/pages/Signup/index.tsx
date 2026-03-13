@@ -7,10 +7,13 @@ import Logo from "@/components/global/Logo";
 import { SignupLeftPanel } from "./components/SignupLeftPanel";
 import { RoleSelection } from "./components/RoleSelection";
 import { SignupForm } from "./components/SignupForm";
+import { type SignupFormValues } from "@/validations";
+import { useAuth } from "@/context/AuthContext";
 
 const Signup: React.FC = () => {
   const navigate = useNavigate();
   const formContainerRef = useRef<HTMLDivElement>(null);
+  const { register, registerMutation } = useAuth();
 
   // State
   const [step, setStep] = useState(1);
@@ -41,10 +44,14 @@ const Signup: React.FC = () => {
     setStep(1);
   };
 
-  const handleSignup = (e: React.SubmitEvent) => {
-    e.preventDefault();
-    // Simulate signup
-    navigate("/marketplace");
+  const handleSignup = (values: SignupFormValues) => {
+    const { name, email, contact_number, password } = values;
+    register(
+      { name, email, contact_number, password },
+      {
+        onSuccess: () => navigate("/login"),
+      },
+    );
   };
 
   return (
@@ -80,6 +87,7 @@ const Signup: React.FC = () => {
                     role={role}
                     onPrev={handlePrevStep}
                     onSubmit={handleSignup}
+                    isPending={registerMutation.isPending}
                   />
                 )}
               </div>

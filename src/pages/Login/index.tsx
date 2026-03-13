@@ -6,10 +6,13 @@ import ContainerDiv from "@/components/shared/ContainerDiv";
 import Logo from "@/components/global/Logo";
 import { LoginLeftPanel } from "./components/LoginLeftPanel";
 import { LoginForm } from "./components/LoginForm";
+import { type LoginFormValues } from "@/validations";
+import { useAuth } from "@/context/AuthContext";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const formContainerRef = useRef<HTMLDivElement>(null);
+  const { login, loginMutation } = useAuth();
 
   // Animation
   useGSAP(() => {
@@ -28,10 +31,14 @@ const Login: React.FC = () => {
     );
   }, []);
 
-  const handleLogin = (e: React.SubmitEvent) => {
-    e.preventDefault();
-    // Simulate login
-    navigate("/marketplace");
+  const handleLogin = (values: LoginFormValues) => {
+    const { email, password } = values;
+    login(
+      { email, password },
+      {
+        onSuccess: () => navigate("/dashboard"),
+      },
+    );
   };
 
   return (
@@ -55,7 +62,10 @@ const Login: React.FC = () => {
                 <div className="flex justify-center mb-8 lg:hidden">
                   <Logo />
                 </div>
-                <LoginForm onSubmit={handleLogin} />
+                <LoginForm
+                  onSubmit={handleLogin}
+                  isPending={loginMutation.isPending}
+                />
               </div>
             </div>
           </div>

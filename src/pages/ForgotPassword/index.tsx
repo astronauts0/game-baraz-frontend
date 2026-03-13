@@ -6,6 +6,7 @@ import ContainerDiv from "@/components/shared/ContainerDiv";
 import Logo from "@/components/global/Logo";
 import { ForgotPasswordLeftPanel } from "./components/ForgotPasswordLeftPanel";
 import { ForgotPasswordForm } from "./components/ForgotPasswordForm";
+import { type ForgotPasswordFormValues } from "@/validations";
 
 const ForgotPassword: React.FC = () => {
   const navigate = useNavigate();
@@ -28,10 +29,9 @@ const ForgotPassword: React.FC = () => {
     );
   }, []);
 
-  const handleRecover = (e: React.SubmitEvent) => {
-    e.preventDefault();
+  const handleRecover = (values: ForgotPasswordFormValues) => {
+    console.log("Recovery values:", values);
     // Simulate recovery link sent
-    // For now, just navigate to login as a placeholder
     navigate("/login");
   };
 

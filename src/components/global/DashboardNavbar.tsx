@@ -21,10 +21,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Logo from "./Logo";
+import { useAuth } from "@/context/AuthContext";
+
 
 const DashboardNavbar: React.FC = () => {
   const location = useLocation();
   const currentView = location.pathname;
+  const { user, logout } = useAuth();
+
 
   const isActive = (path: string) => {
     if (path === "/dashboard") return currentView === "/dashboard";
@@ -102,20 +106,23 @@ const DashboardNavbar: React.FC = () => {
                   >
                     <div className="relative">
                       <Avatar className="h-8 w-8 sm:h-9 sm:w-9 border-2 border-white shadow-sm transition-all group-hover:shadow-md">
-                        <AvatarImage src="https://picsum.photos/100/100" />
+                        <AvatarImage src="" />
                         <AvatarFallback className="bg-primary/10 text-primary font-bold text-xs">
-                          AP
+                          {user?.name?.slice(0, 2).toUpperCase() || "OP"}
                         </AvatarFallback>
                       </Avatar>
+
                       <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white"></div>
                     </div>
                     <div className="hidden xl:flex flex-col items-start leading-none gap-1">
-                      <span className="text-sm font-bold text-slate-900">
-                        Agent Phoenix
+                      <span className="text-sm font-bold text-slate-900 line-clamp-1 max-w-[120px]">
+                        {user?.name || "Operative"}
                       </span>
+
                       <span className="text-[10px] font-medium text-slate-400 uppercase tracking-widest leading-none">
-                        Level 5 Operative
+                        {user?.role || "Operative"}
                       </span>
+
                     </div>
                   </Button>
                 </DropdownMenuTrigger>
@@ -125,16 +132,17 @@ const DashboardNavbar: React.FC = () => {
                 >
                   <div className="p-3 mb-2 bg-slate-50/50 rounded-xl border border-slate-100 flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary text-sm font-bold">
-                      AP
+                      {user?.name?.slice(0, 2).toUpperCase() || "OP"}
                     </div>
                     <div className="flex flex-col">
                       <p className="text-sm font-bold text-slate-900 leading-tight">
-                        Agent Phoenix
+                        {user?.name || "Operative"}
                       </p>
-                      <p className="text-[10px] text-slate-500 font-medium">
-                        operative.phoenix@gamebazaar.com
+                      <p className="text-[10px] text-slate-500 font-medium line-clamp-1">
+                        {user?.email || "operative@gamebazaar.com"}
                       </p>
                     </div>
+
                   </div>
 
                   <div className="grid grid-cols-2 gap-1 p-1 mb-2">
@@ -200,7 +208,10 @@ const DashboardNavbar: React.FC = () => {
                     </DropdownMenuItem>
                   </Link>
 
-                  <DropdownMenuItem className="flex items-center gap-3 px-3 py-2.5 cursor-pointer text-red-600 hover:bg-red-50 focus:bg-red-50 rounded-xl transition-all group">
+                  <DropdownMenuItem 
+                    onClick={() => logout()}
+                    className="flex items-center gap-3 px-3 py-2.5 cursor-pointer text-red-600 hover:bg-red-50 focus:bg-red-50 rounded-xl transition-all group"
+                  >
                     <LogOut
                       size={16}
                       className="text-red-400 group-hover:text-red-600"
@@ -209,6 +220,7 @@ const DashboardNavbar: React.FC = () => {
                       Terminate Session
                     </span>
                   </DropdownMenuItem>
+
 
                   <div className="mt-2 py-2 text-center border-t border-slate-50">
                     <p className="text-[9px] text-slate-300 font-bold tracking-widest uppercase">

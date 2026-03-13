@@ -5,10 +5,14 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { navLinks } from "@/data/appData";
 import Logo from "./Logo";
 import AnimatedArrow from "../shared/AnimatedArrow";
+import { useAuth } from "@/context/AuthContext";
+
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const currentView = location.pathname;
+  const { isAuthenticated } = useAuth();
+
 
   const isActive = (path: string) => {
     if (path === "/") return currentView === "/";
@@ -64,15 +68,33 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          <Link to="/dashboard" className="hidden sm:flex group">
-            <Button>
-              <span>Start Transaction</span>
-              <AnimatedArrow
-                direction="right"
-                iconSpanClassName="group-hover:text-white"
-              />
-            </Button>
-          </Link>
+          {isAuthenticated ? (
+            <Link to="/dashboard" className="hidden sm:flex group">
+              <Button>
+                <span>Dashboard</span>
+                <AnimatedArrow
+                  direction="right"
+                  iconSpanClassName="group-hover:text-white"
+                />
+              </Button>
+            </Link>
+          ) : (
+            <div className="hidden sm:flex items-center gap-3">
+              <Link to="/login" className="text-sm font-bold text-slate-500 hover:text-slate-900 transition-colors px-3 py-2">
+                Login
+              </Link>
+              <Link to="/signup" className="group">
+                <Button>
+                  <span>Sign Up</span>
+                  <AnimatedArrow
+                    direction="right"
+                    iconSpanClassName="group-hover:text-white"
+                  />
+                </Button>
+              </Link>
+            </div>
+          )}
+
           <SidebarTrigger className="lg:hidden" />
         </div>
       </div>
